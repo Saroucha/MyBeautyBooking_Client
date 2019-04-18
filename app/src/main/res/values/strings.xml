@@ -1,0 +1,72 @@
+<resources>
+    <string name="app_name">MyBeautyBooking</string>
+    <string name="authentification_dialog_msg">Authentification&#8230;</string>
+    <string name="login_failed_msg">Échec de la connexion</string>
+    <string name="logout_msg">Déconnexion</string>
+    <string name="error_invalid_email">Entrez une adresse mail valide</string>
+    <string name="error_invalid_password">Au minimum 8 caractères alphanumériques</string>
+    <string name="creating_account_dialog_msg">Creation du compte&#8230;</string>
+    <string name="error_name_signup_msg">Entrez un nom corrècte</string>
+    <string name="error_firstname_signup_msg">Entrez un prénom corrècte</string>
+    <string name="error_phone_signup_msg">Entrez un numéro de téléphone valide</string>
+    <string name="error_street_signup_msg">Entrez une adresse corrècte</string>
+    <string name="error_zip_signup_msg">Entrez un code postal valide</string>
+    <string name="error_city_signup_msg">Entrez un nom de ville corrècte</string>
+    <string name="email">Entrez un Email</string>
+    <string name="adresse">Entrez un Adresse</string>
+    <string name="tva">Entrez une TVA</string>
+    <string name="password">Entrez un Mot de passe</string>
+    <string name="login">Connexion</string>
+    <string name="logout">Déconnexion</string>
+    <string name="link_create_account_msg">Inscription</string>
+    <string name="name">Nom complet</string>
+    <string name="last_name">Prénom</string>
+    <string name="phone">Téléphone</string>
+    <string name="street">Adresse</string>
+    <string name="zip">Code postal</string>
+    <string name="city">Ville</string>
+    <string name="link_login_msg">Déjà inscrit ? Identifiez vous.</string>
+    <string name="error_exist_email">Cette adresse mail est associé à autre compte</string>
+    <string name="title_activity_login_pro">Login_pro</string>
+    <string name="activity_google_map_api">Map</string>
+    <string-array name="test">
+        <item>Découvrez des professionnels près de chez vous</item>
+        <item>Accèdez aux ventes privés </item>
+    </string-array>
+
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="openDrawer">open_drawer</string>
+    <string name="closeDrawer">close_drawer</string>
+
+    <!-- Navigation Drawer menu labels -->
+    <string name="nav_home">Home</string>
+    <string name="nav_photos">Photos</string>
+    <string name="nav_movies">Movies</string>
+    <string name="nav_notifications">Notifications</string>
+    <string name="nav_settings">Paramètres</string>
+    <string name="nav_search">Recherche</string>
+    <string name="nav_profile">Mon Compte</string>
+    <string name="nav_delete">Supprimer mon compte</string>
+    <string name="nav_logout">Déconnexion</string>
+    <string name="nav_about_us">Qui somme nous ?</string>
+
+    <!-- Toolbar titles when navigation menu item is selected -->
+    <string-array name="nav_item_activity_titles">
+        <item>Home</item>
+        <item>Settings</item>
+        <item>Profil</item>
+        <item>Logout</item>
+    </string-array>
+
+    <string name="activity_title_about_us">About Us</string>
+    <string name="activity_title_privacy_policy">Privacy Policy</string>
+    <string name="action_clear_all">Clear All</string>
+    <string name="action_logout">Logout</string>
+    <string name="action_mark_all_read">Mark All as Read</string>
+    <string name="privacy_policy">Politiques de confidentialité</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

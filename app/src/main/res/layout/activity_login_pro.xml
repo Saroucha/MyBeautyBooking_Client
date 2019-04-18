@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorwhite"
+    tools:context=".Login_pro">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:paddingLeft="60dp"
+        android:paddingRight="60dp"
+        android:orientation="vertical">
+
+
+        <ImageView
+            android:id="@+id/logo"
+            android:src="@drawable/logo"
+            android:layout_marginBottom="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="100dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="16dp">
+
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@mipmap/ic_pers"
+                    android:layout_gravity="center"/>
+
+                <EditText
+                    android:id="@+id/input_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Email"
+                    android:textColorHint="#d9e5f3"
+                    android:layout_marginLeft="15dp"
+                    android:background="#00000000"
+                    android:letterSpacing="0.1"
+                    android:textSize="16dp"
+
+                    android:textColor="@color/colorblack"
+                    android:inputType="textEmailAddress" />
+
+                />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#4a5a71"></LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="16dp">
+
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@mipmap/ic_pass"
+                    android:layout_gravity="center"/>
+
+
+                <EditText
+                    android:id="@+id/input_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Password"
+                    android:textColorHint="#d9e5f3"
+                    android:layout_marginLeft="15dp"
+                    android:background="#00000000"
+                    android:inputType="textPassword"
+                    android:letterSpacing="0.1"
+                    android:textSize="16dp"
+                    android:textColor="@color/colorblack"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#4a5a71"></LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="60dp"
+        android:paddingRight="60dp"
+        android:orientation="vertical"
+        android:gravity="bottom"
+        android:layout_marginBottom="20dp"
+        >
+
+        <Button
+            android:id="@+id/btn_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/input_password"
+            android:layout_gravity="bottom"
+            android:paddingTop="10dp"
+            android:background="@color/colorpink"
+            android:gravity="center"
+            android:letterSpacing="0.2"
+            android:padding="16dp"
+            android:text="Se connecter"
+            android:textColor="@color/colorblack"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/link_signup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/input_password"
+            android:layout_gravity="bottom"
+            android:paddingTop="20dp"
+            android:layout_marginTop="20dp"
+            android:background="@color/colorblack"
+            android:gravity="center"
+            android:letterSpacing="0.2"
+            android:padding="16dp"
+            android:text="Devenir Professionnel"
+            android:textColor="#d9e5f3"
+            android:textStyle="bold" />
+
+
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="600dp"
+        android:gravity="center"></LinearLayout>
+
+
+
+
+
+
+</RelativeLayout>

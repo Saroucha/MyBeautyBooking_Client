@@ -1,0 +1,450 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Profile_Pro">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_marginBottom="-333dp">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="top"
+            android:orientation="horizontal"
+            android:padding="16dp">
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:gravity="bottom"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/ll"
+                android:orientation="horizontal">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="20dp"
+                    android:layout_weight="1"
+                    android:background="@color/colorwhite"
+                    android:orientation="vertical">
+
+                    <Button
+                        android:id="@+id/Deleteaccount"
+                        android:layout_width="match_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_gravity="right"
+                        android:background="@color/colorblack"
+                        android:gravity="center"
+                        android:text="Delete Account"
+                        android:textColor="@color/colorwhite"
+                        android:textSize="10dp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:gravity="bottom"
+                    android:id="@+id/pic"
+                    android:background="@drawable/loading_shape"
+                    android:src="@drawable/logo" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="20dp"
+                    android:layout_weight="1"
+                    android:background="@color/colorwhite"
+                    android:orientation="vertical">
+
+                    <Button
+                        android:id="@+id/modifier"
+                        android:layout_width="match_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_gravity="right"
+                        android:background="@color/colorblack"
+                        android:gravity="center"
+                        android:text="Update Account"
+                        android:textColor="@color/colorwhite"
+                        android:textSize="10dp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+    </FrameLayout>
+
+    <LinearLayout
+        android:id="@+id/linear"
+        android:layout_width="match_parent"
+        android:layout_height="600dp"
+        android:layout_above="@+id/ll"
+        android:layout_marginTop="90dp"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical"
+        tools:ignore="NotSibling">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:id="@+id/username"
+                android:layout_width="243dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#0000"
+                android:gravity="left"
+                android:maxLength="12"
+                android:padding="16dp"
+                android:text="Nom Complet"
+                android:textColor="#a2a1b8"
+                android:textSize="10dp" />
+
+
+            <EditText
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#0000"
+                android:gravity="right"
+                android:hint="Jay patel"
+                android:maxLength="120"
+                android:padding="16dp"
+                android:textColor="#181737"
+                android:textColorHint="#181737"
+                android:textSize="10dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:id="@+id/Telephone"
+                android:layout_width="242dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#0000"
+                android:gravity="left"
+                android:maxLength="12"
+                android:padding="16dp"
+                android:text="Telephone"
+                android:textColor="#a2a1b8"
+                android:textSize="10dp" />
+
+
+            <EditText
+                android:id="@+id/telephone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#0000"
+                android:gravity="right"
+                android:hint="067845822"
+                android:maxLength="120"
+                android:padding="16dp"
+                android:textColor="#181737"
+                android:textColorHint="#181737"
+                android:textSize="10dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:id="@+id/emaail"
+                android:layout_width="157dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#0000"
+                android:gravity="left"
+                android:maxLength="12"
+                android:padding="16dp"
+                android:text="Email"
+                android:textColor="#a2a1b8"
+                android:textSize="10dp" />
+
+
+            <EditText
+                android:id="@+id/email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#0000"
+                android:gravity="right"
+                android:hint="jay@wolfsoft.ws"
+                android:maxLength="300"
+                android:padding="16dp"
+                android:textColor="#181737"
+                android:textColorHint="#1b193b"
+                android:textSize="10dp" />
+        </LinearLayout><![CDATA[
+
+
+        />
+
+        ]]>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:id="@+id/adr"
+                android:layout_width="188dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#0000"
+                android:gravity="left"
+                android:maxLength="12"
+                android:padding="10dp"
+                android:text="Ville"
+                android:textColor="#a2a1b8"
+                android:textSize="10dp" />
+
+
+            <EditText
+                android:id="@+id/adresse"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#0000"
+                android:gravity="right"
+                android:hint="50 rue ..."
+                android:maxLength="120"
+                android:padding="16dp"
+                android:textColor="#181737"
+                android:textColorHint="#181737"
+                android:textSize="10dp" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:id="@+id/POSTA"
+                android:layout_width="184dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#0000"
+                android:gravity="left"
+                android:maxLength="12"
+                android:padding="16dp"
+                android:text="Code Postale"
+                android:textColor="#a2a1b8"
+                android:textSize="10dp" />
+
+
+            <EditText
+                android:id="@+id/postale"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#0000"
+                android:gravity="right"
+                android:hint="91000"
+                android:maxLength="120"
+                android:padding="16dp"
+                android:textColor="#181737"
+                android:textColorHint="#181737"
+                android:textSize="10dp" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:id="@+id/ALENTOUR"
+                android:layout_width="288dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#0000"
+                android:gravity="left"
+                android:maxLength="12"
+                android:padding="16dp"
+                android:text="Je suis à km)"
+                android:textColor="#a2a1b8"
+                android:textSize="10dp" />
+
+            <EditText
+                android:id="@+id/distance"
+                android:layout_width="207dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#0000"
+                android:gravity="right"
+                android:hint="Groupe bancaiure"
+                android:maxLength="12"
+                android:padding="16dp"
+                android:textColor="#181737"
+                android:textColorHint="#1b193b"
+                android:textSize="10dp" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:id="@+id/entre"
+                android:layout_width="334dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#0000"
+                android:gravity="left"
+                android:maxLength="12"
+                android:padding="16dp"
+                android:text="Entreprise"
+                android:textColor="#a2a1b8"
+                android:textSize="10dp" />
+
+
+            <EditText
+                android:id="@+id/nomEntreprise"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#0000"
+                android:gravity="right"
+                android:hint="BPCE"
+                android:maxLength="120"
+                android:padding="16dp"
+                android:textColor="#181737"
+                android:textColorHint="#181737"
+                android:textSize="10dp" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:id="@+id/desc"
+                android:layout_width="235dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#0000"
+                android:gravity="left"
+                android:maxLength="12"
+                android:padding="16dp"
+                android:text="Description d'entreprise"
+                android:textColor="#a2a1b8"
+                android:textSize="10dp" />
+
+            <EditText
+                android:id="@+id/description"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#0000"
+                android:gravity="right"
+                android:hint="Groupe bancaiure"
+                android:maxLength="12"
+                android:padding="16dp"
+                android:textColor="#181737"
+                android:textColorHint="#1b193b"
+                android:textSize="10dp" />
+
+        </LinearLayout>
+
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:id="@+id/registres"
+                android:layout_width="235dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#0000"
+                android:gravity="left"
+                android:maxLength="12"
+                android:padding="16dp"
+                android:text="Siret"
+                android:textColor="#a2a1b8"
+                android:textSize="10dp" />
+
+            <EditText
+                android:id="@+id/registre"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#0000"
+                android:gravity="right"
+                android:hint="Groupe bancaiure"
+                android:maxLength="12"
+                android:padding="16dp"
+                android:textColor="#181737"
+                android:textColorHint="#1b193b"
+                android:textSize="10dp" />
+
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#dad8d8" />
+
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Logout"
+            android:textStyle="bold"
+            android:background="@color/colorblack"
+            android:layout_gravity="right"
+            android:textColor="@color/colorwhite"
+            android:id="@+id/logout"
+            android:textSize="15dp" />
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>

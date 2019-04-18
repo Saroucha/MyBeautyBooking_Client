@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/beaute"
+        android:state_focused="true">
+
+        <shape android:shape="rectangle">
+            <solid android:color="#fce3dc"/>
+            <size android:width="280dp" android:height="180dp"/>
+            <padding
+                android:bottom="2dp"
+                android:left="14dp"
+                android:right="14dp"
+                android:top="4dp" />
+            <gradient
+                android:startColor="@color/common_google_signin_btn_text_dark"
+               android:centerColor="@android:color/transparent"
+                android:endColor="@android:color/transparent"
+                android:angle="180"
+
+                >
+            </gradient>
+        </shape>
+
+    </item>
+</selector>
