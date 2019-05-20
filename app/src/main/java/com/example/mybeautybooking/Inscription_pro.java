@@ -16,10 +16,14 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Base64;
+import android.util.Patterns;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -47,10 +51,10 @@ import java.util.regex.Pattern;
 
 import javax.net.ssl.HttpsURLConnection;
 
-public class Inscription_pro extends AppCompatActivity {
+public class Inscription_pro extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     Button GetImageFromGalleryButton, Enregistrer;
-
+    Spinner staticSpinner;
     ImageView ShowSelectedImage;
     //EDITEXT
     EditText Nom;
@@ -68,6 +72,7 @@ public class Inscription_pro extends AppCompatActivity {
     //TEXTVIEW
     TextView TxtNom;
     TextView TxtMail;
+    TextView TxtCatego;
     TextView TxtMDP;
     TextView TxtAdresse;
     TextView TxtPostale;
@@ -88,6 +93,7 @@ public class Inscription_pro extends AppCompatActivity {
     String codePostale="Postale";
     String distance="Distance";
     String Entreprise="NomEntreprise";
+    String categorie="Categorie";
    // String Siege="Siege";
 
     String Registre="Registre";
@@ -110,45 +116,36 @@ public class Inscription_pro extends AppCompatActivity {
     String postalePro;
     String distancePro;
     String NomEntreprisePro;
-   // String siegePro;
+    String Spin;
     String registrePro;
     String descriptionPro;
     String mobilePro;
+    String[] categoriesNames={"Catégorie","Coiffure","Onglerie","Epilation","Bien-être"};
     public final Pattern POSTALE = Pattern.compile("^(([0-8][0-9])|(9[0-5])|(2[ab]))[0-9]{3}$");
     public final Pattern Siret = Pattern.compile("^[0-9]{14}$");
     public final Pattern EMAIL_ADDRESS_PATTERN = Pattern.compile( "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+");
     public final Pattern TELEPHONE=Pattern.compile("^\\+?\\(?[0-9]{1,3}\\)? ?-?[0-9]{1,3} ?-?[0-9]{3,5} ?-?[0-9]{4}( ?-?[0-9]{3})?");
     HttpURLConnection httpURLConnection ;
-
     URL url;
-
     OutputStream outputStream;
-
     BufferedWriter bufferedWriter ;
-
     int RC ;
-
     BufferedReader bufferedReader ;
-
     StringBuilder stringBuilder;
-
     boolean check = true;
-
     private int GALLERY = 1, CAMERA = 2;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inscription_pro);
-
+        // les instances Button, Image view and spinner
         GetImageFromGalleryButton = (Button)findViewById(R.id.buttonSelect);
-
         Enregistrer = (Button)findViewById(R.id.buttonUpload);
-
         ShowSelectedImage = (ImageView)findViewById(R.id.imageView);
+        staticSpinner = (Spinner) findViewById(R.id.simpleSpinner);
+        staticSpinner.setOnItemSelectedListener(this);
 
-// get ID EDITTEXT
-
+        // get ID EDITTEXT
         Nom=(EditText)findViewById(R.id.NomC);
         mail=(EditText)findViewById(R.id.mail);
         adresseDomicile=(EditText)findViewById(R.id.adresseDomicile);
@@ -157,12 +154,10 @@ public class Inscription_pro extends AppCompatActivity {
         password=(EditText)findViewById(R.id.mdp);
         NomEntreprise=(EditText)findViewById(R.id.nomEntreprise);
         RegistreSocial=(EditText)findViewById(R.id.registreCommercial);
-       // SiegeSocial=(EditText)findViewById(R.id.siegeSocial);
         Description=(EditText)findViewById(R.id.description);
         mobile=(EditText)findViewById(R.id.tel);
 
-// GET ID TEXTVIEW
-
+        // GET ID TEXTVIEW
         TxtNom=(TextView)findViewById(R.id.txtNom);
         TxtAdresse=(TextView)findViewById(R.id.txtAdresse);
         TxtMail=(TextView)findViewById(R.id.txtMail);
@@ -171,40 +166,44 @@ public class Inscription_pro extends AppCompatActivity {
         TxtNomEntreprise=(TextView)findViewById(R.id.txtNomEntreprise);
         TxtDistance=(TextView)findViewById(R.id.txtDistance);
         TxtRegistre=(TextView)findViewById(R.id.txtRegistre);
-        //TxtSiege=(TextView)findViewById(R.id.txtSiege);
+        TxtCatego=(TextView)findViewById(R.id.txtCatego);
         TxtTel=(TextView)findViewById(R.id.txtTel);
         TxtDescription=(TextView)findViewById(R.id.txtDescription);
 
         byteArrayOutputStream = new ByteArrayOutputStream();
 
+        //Creating the ArrayAdapter instance having the bank name list
+        ArrayAdapter aa = new ArrayAdapter(this,android.R.layout.simple_spinner_item,categoriesNames);
+        aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        //Setting the ArrayAdapter data on the Spinner
+        staticSpinner.setAdapter(aa);
+
+
+        // button's action
         GetImageFromGalleryButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 showPictureDialog();
-
-
             }
         });
-
 
         Enregistrer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                NomPro=Nom.getText().toString().trim();
+               NomPro=Nom.getText().toString().trim();
                 emailPro=mail.getText().toString().trim();
                 passwordPro=password.getText().toString().trim();
                 adressePro=adresseDomicile.getText().toString().trim();
                 postalePro=CodePostale.getText().toString().trim();
                 distancePro=Distance.getText().toString().trim();
                 NomEntreprisePro=NomEntreprise.getText().toString().trim();
-               // siegePro=SiegeSocial.getText().toString().trim();
                 registrePro=RegistreSocial.getText().toString().trim();
                 descriptionPro=Description.getText().toString().trim();
                 mobilePro=mobile.getText().toString().trim();
-if(Nom.getText().toString().trim().equals("")|| mail.getText().toString().trim().equals("")|| password.getText().toString().trim().equals("") && adresseDomicile.getText().toString().trim().equals("") || CodePostale.getText().toString().trim().equals("")|| Distance.getText().toString().equals("") || NomEntreprise.getText().toString().equals("") || RegistreSocial.getText().toString().equals("")|| Description.getText().toString().trim().equals("")|| mobile.getText().toString().trim().equals("")){
-
+                Spin = staticSpinner.getSelectedItem().toString();
+if(NomPro.isEmpty()|| emailPro.isEmpty()|| passwordPro.isEmpty() || Spin.equals("Catégorie")|| adresseDomicile.getText().toString().trim().equals("") || CodePostale.getText().toString().trim().equals("")|| Distance.getText().toString().equals("") || NomEntreprise.getText().toString().equals("") || RegistreSocial.getText().toString().equals("")|| Description.getText().toString().trim().equals("")|| mobile.getText().toString().trim().equals("")){
+    TxtCatego.setVisibility(View.VISIBLE);
+    TxtCatego.setText("Choisissez une catégorie !!");
     TxtNom.setVisibility(View.VISIBLE);
     TxtNom.setText("Insérer votre nom complet");
     TxtMail.setVisibility(View.VISIBLE);
@@ -220,19 +219,22 @@ if(Nom.getText().toString().trim().equals("")|| mail.getText().toString().trim()
     TxtNomEntreprise.setVisibility(View.VISIBLE);
     TxtNomEntreprise.setText("Insérer le nom de votre entreprise");
     TxtRegistre.setVisibility(View.VISIBLE);
-    TxtRegistre.setText("Insérer le registre");
-   // TxtSiege.setVisibility(View.VISIBLE);
-  ///  TxtSiege.setText("Insérer le siége social de votre entreprise");
+    TxtRegistre.setText("Insérer le n°Siret");
     TxtDescription.setVisibility(View.VISIBLE);
     TxtDescription.setText("Insérer une description de votre entreprise");
 
-}else{
-    UploadImageToServer();
+        }else{
+                    UploadImageToServer();
+                    sendEmail();
+                    Intent intent = new Intent(Inscription_pro.this, HomePage.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                    startActivity(intent);
+
+                }
+
+  // }
 }
-            }
-        });
-
-
+                });
 
         if (ContextCompat.checkSelfPermission(Inscription_pro.this, android.Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -242,6 +244,17 @@ if(Nom.getText().toString().trim().equals("")|| mail.getText().toString().trim()
         }
     }
 
+    //Performing action onItemSelected and onNothing selected
+    @Override
+    public void onItemSelected(AdapterView<?> arg0, View arg1, int position,long id) {
+        Toast.makeText(getApplicationContext(), categoriesNames[position], Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> arg0) {
+// TODO Auto-generated method stub
+
+    }
     private void showPictureDialog(){
         AlertDialog.Builder pictureDialog = new AlertDialog.Builder(this);
         pictureDialog.setTitle("Select Action");
@@ -335,24 +348,15 @@ if(Nom.getText().toString().trim().equals("")|| mail.getText().toString().trim()
     }
 
     public void UploadImageToServer(){
-
         FixBitmap.compress(Bitmap.CompressFormat.JPEG, 40, byteArrayOutputStream);
-
         byteArray = byteArrayOutputStream.toByteArray();
-
         ConvertImage = Base64.encodeToString(byteArray, Base64.DEFAULT);
-
-
         class AsyncTaskUploadClass extends AsyncTask<Void,Void,String> {
 
             @Override
             protected void onPreExecute() {
-
                 super.onPreExecute();
-
                 progressDialog = ProgressDialog.show(Inscription_pro.this,"Image is Uploading","Please Wait",false,false);
-
-
             }
 
             @Override
@@ -381,13 +385,13 @@ if(Nom.getText().toString().trim().equals("")|| mail.getText().toString().trim()
                 HashMapParams.put(distance,distancePro);
                 HashMapParams.put(Entreprise, NomEntreprisePro);
                 HashMapParams.put(Registre, registrePro);
-               // HashMapParams.put(Siege, siegePro);
                 HashMapParams.put(Descrip, descriptionPro);
                 HashMapParams.put(tel,mobilePro);
+                HashMapParams.put(categorie,Spin);
                 HashMapParams.put(ImageTag, NomPro);
                 HashMapParams.put(ImageName, ConvertImage);
 
-                String FinalData = imageProcessClass.ImageHttpRequest("http://10.192.129.78/beautybooking/uploadImage.php", HashMapParams);
+                String FinalData = imageProcessClass.ImageHttpRequest("http://192.168.43.79/beautybooking/EnregistrementPro.php", HashMapParams);
 
                 return FinalData;
 
@@ -396,6 +400,7 @@ if(Nom.getText().toString().trim().equals("")|| mail.getText().toString().trim()
         AsyncTaskUploadClass AsyncTaskUploadClassOBJ = new AsyncTaskUploadClass();
         AsyncTaskUploadClassOBJ.execute();
     }
+
 
     public class ImageProcessClass{
 

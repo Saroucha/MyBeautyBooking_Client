@@ -3,14 +3,16 @@ package com.example.mybeautybooking;
 public class AndyConstants {
     // web service url constants
     public class ServiceType {
-        public static final String BASE_URL = "http://10.192.129.78:80/beautybooking/";
+        public static final String BASE_URL = "http://192.168.43.79:80/beautybooking/";
         public static final String LOGIN = BASE_URL + "Authentification.php";
+        public static final String LOGINN = BASE_URL + "login.php";
         public static final String REGISTER =  BASE_URL + "EnregistrementPro.php";
         public static final String IMAGE =  BASE_URL + "getImage.php";
    }
     // webservice key constants
     public class Params {
         public static final String NAME = "NomP";
+        public static final String ID = "id";
         public static final String Email = "Email";
         public static final String adresseDomicile="Adresse";
         public static final String postale="Postale";

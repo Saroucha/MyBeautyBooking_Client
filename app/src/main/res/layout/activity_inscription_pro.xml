@@ -29,6 +29,7 @@
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:textSize="15dp"
+                android:fontFamily="@font/sofia"
                 android:text="Informations personnelles :"/>
 
             <EditText
@@ -65,6 +66,8 @@
                 android:id="@+id/adressePostale"
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
+                android:inputType="number"
+                android:maxLength="5"
                 android:layout_above="@id/adresseDomicile"
                 android:hint="Saisir votre code postale"
                 android:textSize="10sp" />
@@ -78,6 +81,8 @@
             <EditText
                 android:id="@+id/distance"
                 android:layout_width="250dp"
+                android:inputType="number"
+                android:maxLength="5"
                 android:layout_height="wrap_content"
                 android:layout_above="@+id/adressePostale"
                 android:hint="Saisir la distance de votre ville"
@@ -89,7 +94,26 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/mcgpalette0_900"
                 android:visibility="gone"/>
-
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="15dp"
+                android:text="Choisir une catégorie :"/>
+            <Spinner
+                android:id="@+id/simpleSpinner"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:textColor="@color/mcgpalette0_900"
+                android:textSize="10sp"
+                 />
+            <TextView
+                android:id="@+id/txtCatego"
+                android:layout_width="250dp"
+                android:textColor="@color/colorblack"
+                android:textSize="6dp"
+                android:layout_height="wrap_content"
+                android:visibility="invisible"/>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -118,6 +142,7 @@
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:layout_above="@+id/mdp"
+                android:maxLength="13"
                 android:hint="Saisir un téléphone"
                 android:textSize="10sp" />
             <TextView
@@ -196,6 +221,8 @@
                 android:id="@+id/registreCommercial"
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
+                android:inputType="number"
+                android:maxLength="14"
                 android:layout_above="@+id/nomEntreprise"
                 android:hint="Saisir le n° Siret"
                 android:textSize="10sp" />
@@ -204,6 +231,7 @@
                 android:layout_width="250dp"
                 android:textColor="@color/mcgpalette0_900"
                 android:layout_height="wrap_content"
+                android:textSize="6dp"
                 android:visibility="invisible"/>
 
             <EditText
@@ -211,8 +239,12 @@
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:layout_above="@+id/registreCommercial"
-                android:hint="Saisir une description de votre entreprise"
-                android:textSize="10sp" />
+                android:hint="Saisir une lien"
+                android:textSize="10sp"
+                android:inputType="textMultiLine"
+                android:lines="8"
+                android:maxLines="10"
+                android:scrollbars="vertical"/>
             <TextView
                 android:id="@+id/txtDescription"
                 android:textColor="@color/mcgpalette0_900"

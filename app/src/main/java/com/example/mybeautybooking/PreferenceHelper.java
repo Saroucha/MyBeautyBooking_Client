@@ -6,26 +6,35 @@ package com.example.mybeautybooking;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import java.util.HashMap;
+
 public class PreferenceHelper {
 
     private final String INTRO = "intro";
     private final String NAME = "NomP";
-    private final String Email = "Email";
-    private final String adresseDomicile="Adresse";
+    public final String ID = "id";
+
+
+    public final String Email = "Email";
+    public final String adresseDomicile="Adresse";
     private final String postale="Postale";
     public  final String distance="Distance";
     private final String nomEntreprise="NomEntreprise";
     private final String registre="Registre";
-    private final String description="Description";
-    private final String telephone="Telephone";
+    public final String description="Description";
+    public final String telephone="Telephone";
     private final String Image="image_path";
+    private final String LOGINN="IS_LOGIN";
     private SharedPreferences app_prefs;
+   public  SharedPreferences.Editor editor;
     private Context context;
 
     public PreferenceHelper(Context context) {
+        this.context = context;
         app_prefs = context.getSharedPreferences("shared",
                 Context.MODE_PRIVATE);
-        this.context = context;
+        editor=app_prefs.edit();
+
     }
 
     public void putIsLogin(boolean loginorout) {
@@ -33,10 +42,37 @@ public class PreferenceHelper {
         edit.putBoolean(INTRO, loginorout);
         edit.commit();
     }
+
+    public void createSession(String Ville, String Tel, String Distance, String Description, String Id){
+        editor.putBoolean(LOGINN,true);
+        editor.putString(adresseDomicile,Ville);
+        editor.putString(telephone,Tel);
+        editor.putString(distance,Distance);
+        editor.putString(description,Description);
+        editor.putString(ID,Id);
+        editor.apply();
+
+    }
+
+    public void createSessionLOGIN(String email, String id){
+        editor.putBoolean(LOGINN,true);
+        editor.putString(Email,email);
+        editor.putString(ID,id);
+        editor.apply();
+
+    }
     public boolean getIsLogin() {
         return app_prefs.getBoolean(INTRO, false);
     }
 
+    public HashMap<String,String> getUserDetail(){
+        HashMap<String,String> user = new HashMap<>();
+        user.put(NAME,app_prefs.getString(NAME,null));
+        user.put(Email,app_prefs.getString(Email,null));
+       user.put(ID,app_prefs.getString(ID,null));
+
+        return user;
+    }
     public void putadresseDomicile(String loginorout) {
         SharedPreferences.Editor edit = app_prefs.edit();
         edit.putString(adresseDomicile, loginorout);
@@ -44,6 +80,17 @@ public class PreferenceHelper {
     }
     public String getadresseDomicile() {
         return app_prefs.getString(adresseDomicile, "");
+    }
+
+
+   public String getID() {
+       return app_prefs.getString(ID, "");
+   }
+
+    public void putID(String loginorout) {
+        SharedPreferences.Editor edit = app_prefs.edit();
+        edit.putString(ID, loginorout);
+        edit.commit();
     }
 
     public void putName(String loginorout) {
@@ -63,6 +110,8 @@ public class PreferenceHelper {
     public String getImage() {
         return app_prefs.getString(Image, "");
     }
+
+
 
 
     public void putHobby(String loginorout) {

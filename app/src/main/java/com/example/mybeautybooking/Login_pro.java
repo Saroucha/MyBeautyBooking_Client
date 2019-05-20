@@ -100,6 +100,11 @@ public class Login_pro extends AppCompatActivity {
         final HashMap<String, String> map = new HashMap<>();
         map.put(AndyConstants.Params.Email, etusername.getText().toString());
         map.put(AndyConstants.Params.PASSWORD, etpassword.getText().toString());
+       // map.put(AndyConstants.Params.ID, preferenceHelper.getID());
+        System.out.println("ID:"+preferenceHelper.getID());
+
+        //preferenceHelper.createSessionLOGIN(preferenceHelper.Email,AndyConstants.Params.ID);
+
         new AsyncTask<Void, Void, String>(){
             protected String doInBackground(Void[] params) {
                 String response="";
@@ -136,3 +141,4 @@ public class Login_pro extends AppCompatActivity {
         }
     }
 }
+

@@ -73,6 +73,7 @@ public class ParseContent {
                     preferenceHelper.putNomEntreprise(dataobj.getString(AndyConstants.Params.nomEntreprise));
                     preferenceHelper.putTelephone(dataobj.getString(AndyConstants.Params.telephone));
                     preferenceHelper.putregistre(dataobj.getString(AndyConstants.Params.registre));
+                    preferenceHelper.putID(dataobj.getString(AndyConstants.Params.ID));
                     preferenceHelper.putImage(dataobj.getString(AndyConstants.Params.Image));
               }
           }
