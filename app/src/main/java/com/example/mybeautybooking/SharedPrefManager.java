@@ -32,16 +32,16 @@ public class SharedPrefManager {
         return mInstance;
     }
 
-    public boolean userLogin(int id, String password, String email, String name, String firstname, String phone, String street, String zip, String city){
+    public boolean userLogin(int id,  String name, String firstname, String email, String password, String phone, String street, String zip, String city){
 
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
         editor.putInt(KEY_USER_ID, id);
-        editor.putString(KEY_USER_EMAIL, email);
-        editor.putString(KEY_USER_PASS, password);
         editor.putString(KEY_USER_NAME, name);
         editor.putString(KEY_USER_FIRSTNAME, firstname);
+        editor.putString(KEY_USER_EMAIL, email);
+        editor.putString(KEY_USER_PASS, password);
         editor.putString(KEY_USER_PHONE, phone);
         editor.putString(KEY_USER_STREET, street);
         editor.putString(KEY_USER_ZIP, zip);
@@ -68,19 +68,9 @@ public class SharedPrefManager {
         return true;
     }
 
-    public String getKeyUserID(){
+    public Integer getKeyUserID(){
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
-        return sharedPreferences.getString(KEY_USER_ID, null);
-    }
-
-    public String getUserpass(){
-        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
-        return sharedPreferences.getString(KEY_USER_PASS, null);
-    }
-
-    public String getUserEmail(){
-        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
-        return sharedPreferences.getString(KEY_USER_EMAIL, null);
+        return sharedPreferences.getInt(KEY_USER_ID,0);
     }
 
     public String getKeyUserName(){
@@ -91,6 +81,17 @@ public class SharedPrefManager {
     public String getKeyUserFirstname(){
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         return sharedPreferences.getString(KEY_USER_FIRSTNAME, null);
+    }
+
+
+    public String getUserEmail(){
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        return sharedPreferences.getString(KEY_USER_EMAIL, null);
+    }
+
+    public String getUserPass(){
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        return sharedPreferences.getString(KEY_USER_PASS, null);
     }
 
     public String getKeyUserPhone(){

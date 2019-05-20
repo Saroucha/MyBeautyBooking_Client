@@ -57,7 +57,7 @@ public class ClientLoginActivity extends AppCompatActivity {
     TextView signupLink_Client;
 
     private RequestQueue requestQueue;
-    private static final String URL = "http://10.192.129.78:80/beautybooking/Login_Client.php";
+    private static final String URL = "http://192.168.43.242/Test-Projet/Login_Client.php";
     private StringRequest request;
 
     @Override

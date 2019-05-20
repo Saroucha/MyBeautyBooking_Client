@@ -3,7 +3,7 @@ package com.example.mybeautybooking;
 public class AndyConstants {
     // web service url constants
     public class ServiceType {
-        public static final String BASE_URL = "http://10.192.129.78:80/beautybooking/";
+        public static final String BASE_URL = "http://192.168.1.27/beautybooking/";
         public static final String LOGIN = BASE_URL + "Authentification.php";
         public static final String REGISTER =  BASE_URL + "EnregistrementPro.php";
         public static final String IMAGE =  BASE_URL + "getImage.php";
