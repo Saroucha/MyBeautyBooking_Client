@@ -1,38 +1,53 @@
 package com.example.mybeautybooking;
 
+import android.app.ProgressDialog;
 import android.support.design.widget.NavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.NetworkError;
+import com.android.volley.NoConnectionError;
+import com.android.volley.ParseError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.ServerError;
+import com.android.volley.TimeoutError;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 import com.example.mybeautybooking.activity.AboutUsActivity;
+import com.example.mybeautybooking.activity.ClientProfil;
 import com.example.mybeautybooking.activity.PrivacyPolicyActivity;
-import com.example.mybeautybooking.fragment.DeleteFragment;
 import com.example.mybeautybooking.fragment.HomeFragment;
 import com.example.mybeautybooking.fragment.ProfilFragment;
 import com.example.mybeautybooking.fragment.SettingsFragment;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class ClientProfilActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, HomeFragment.OnFragmentInteractionListener, ProfilFragment.OnFragmentInteractionListener {
@@ -44,11 +59,9 @@ public class ClientProfilActivity extends AppCompatActivity implements Navigatio
     private TextView txtName, txtWebsite;
     private Toolbar toolbar;
     private FloatingActionButton fab;
+    ProgressBar progressBar;
+    ProgressDialog progressDialog2;
 
-    // urls to load navigation header background image
-    // and profile image
-    private static final String urlNavHeaderBg = "https://api.androidhive.info/images/nav-menu-header-bg.jpg";
-    private static final String urlProfileImg = "https://lh3.googleusercontent.com/eCtE_G34M9ygdkmOpYvCag1vBARCmZwnVS6rS5t4JLzJ6QgQSBquM0nuTsCpLhYbKljoyS-txg";
 
     // index to identify current nav menu item
     public static int navItemIndex = 0;
@@ -57,7 +70,6 @@ public class ClientProfilActivity extends AppCompatActivity implements Navigatio
     private static final String TAG_HOME = "home";
     private static final String TAG_SETTINGS = "settings";
     private static final String TAG_PROFIL = "profil";
-    private static final String TAG_DELETE = "delete";
     public static String CURRENT_TAG = TAG_HOME;
 
     // toolbar titles respected to selected nav menu item
@@ -68,6 +80,11 @@ public class ClientProfilActivity extends AppCompatActivity implements Navigatio
     private Handler mHandler;
 
     Button logoutButton;
+
+
+    private RequestQueue requestQueue;
+    private static final String URL = "http://192.168.43.242/Test-Projet/delete_test.php";
+    private StringRequest request;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,10 +105,8 @@ public class ClientProfilActivity extends AppCompatActivity implements Navigatio
         // Navigation view header
         navHeader = navigationView.getHeaderView(0);
 
-
         // load toolbar titles from string resources
         activityTitles = getResources().getStringArray(R.array.nav_item_activity_titles);
-
 
 
         // initializing navigation menu
@@ -114,14 +129,6 @@ public class ClientProfilActivity extends AppCompatActivity implements Navigatio
         txtName.setText("Ravi Tamada");
         txtWebsite.setText("www.androidhive.info");
 
-        // loading header background image
-        /*Glide.with(this).load(urlNavHeaderBg)
-                .crossFade()
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .into(imgNavHeaderBg);*/
-
-
-        // showing dot next to notifications label
     }
 
     /***
@@ -145,7 +152,10 @@ public class ClientProfilActivity extends AppCompatActivity implements Navigatio
             return;
         }
 
-
+        // Sometimes, when fragment has huge data, screen seems hanging
+        // when switching between navigation menus
+        // So using runnable, the fragment is loaded with cross fade effect
+        // This effect can be seen in GMail app
         Runnable mPendingRunnable = new Runnable() {
             @Override
             public void run() {
@@ -184,20 +194,15 @@ public class ClientProfilActivity extends AppCompatActivity implements Navigatio
                 // settings fragment
                 SettingsFragment settingsFragment = new SettingsFragment();
                 return settingsFragment;
-            case 2:
-                // profil fragment
-                ProfilFragment profilFragment = new ProfilFragment();
-                return profilFragment;
+//            case 2:
+//                // profil fragment
+//                ProfilFragment profilFragment = new ProfilFragment();
+//                return profilFragment;
             case 3:
                 finish();
                 overridePendingTransition(0, 0);
 
                 Toast.makeText(getBaseContext(), R.string.logout, Toast.LENGTH_LONG).show();
-            case 4:
-                // delete fragment
-                DeleteFragment deleteFragment = new DeleteFragment();
-                return deleteFragment;
-
             default:
                 return new HomeFragment();
         }
@@ -223,35 +228,30 @@ public class ClientProfilActivity extends AppCompatActivity implements Navigatio
                 switch (menuItem.getItemId()) {
                     //Replacing the main content with ContentFragment Which is our Inbox View;
                     case R.id.nav_home:
-
-                    navItemIndex = 0;
-                   CURRENT_TAG = TAG_HOME;
+                        navItemIndex = 0;
+                        CURRENT_TAG = TAG_HOME;
                         break;
-                   case R.id.nav_settings:
-                       navItemIndex = 1;
+                    case R.id.nav_settings:
+                        navItemIndex = 1;
                         CURRENT_TAG = TAG_SETTINGS;
                         break;
                     case R.id.nav_profile:
-                        navItemIndex = 2;
-                        CURRENT_TAG = TAG_PROFIL;
-                        break;
+                        startActivity(new Intent(com.example.mybeautybooking.ClientProfilActivity.this, ClientProfil.class));
+                        drawer.closeDrawers();
+                        return true;
                     case R.id.nav_logout:
                         navItemIndex = 3;
                         CURRENT_TAG = TAG_PROFIL;
                         break;
 
-                    case R.id.nav_delete:
-                        navItemIndex = 4;
-                        CURRENT_TAG = TAG_DELETE;
-                        break;
                     case R.id.nav_about_us:
                         // launch new intent instead of loading fragment
-                        startActivity(new Intent(ClientProfilActivity.this, AboutUsActivity.class));
+                        startActivity(new Intent(com.example.mybeautybooking.ClientProfilActivity.this, AboutUsActivity.class));
                         drawer.closeDrawers();
                         return true;
                     case R.id.nav_privacy_policy:
                         // launch new intent instead of loading fragment
-                        startActivity(new Intent(ClientProfilActivity.this, PrivacyPolicyActivity.class));
+                        startActivity(new Intent(com.example.mybeautybooking.ClientProfilActivity.this, PrivacyPolicyActivity.class));
                         drawer.closeDrawers();
                         return true;
                     default:
@@ -382,4 +382,15 @@ public class ClientProfilActivity extends AppCompatActivity implements Navigatio
         ProfilFragment profilFragment = new ProfilFragment();
 
     }
+    @Override
+    public void onFragmentInteractionHome(Uri uri) {
+        Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show();
+        ProfilFragment profilFragment = new ProfilFragment();
+
+
+    }
+
+
+
 }
+

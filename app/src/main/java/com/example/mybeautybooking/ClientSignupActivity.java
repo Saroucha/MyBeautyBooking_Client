@@ -66,7 +66,7 @@ public class ClientSignupActivity extends AppCompatActivity {
     TextView loginLink_Client;
 
     private RequestQueue requestQueue;
-    private static final String URL = "http://10.192.129.78:80/beautybooking/client_add.php";
+    private static final String URL = "http://192.168.43.242/projet/client_add.php";
     private StringRequest request;
 
     @Override
@@ -136,6 +136,19 @@ public class ClientSignupActivity extends AppCompatActivity {
 
                     /*verification jsonphp reponse*/
                     if(jsonObject.names().get(0).equals("success")){
+                        SharedPrefManager.getInstance(getApplicationContext())
+                                .userLogin(
+                                        jsonObject.getInt("id"),
+                                        jsonObject.getString("name"),
+                                        jsonObject.getString("firstname"),
+                                        jsonObject.getString("email"),
+                                        jsonObject.getString("password"),
+                                        jsonObject.getString("phone"),
+                                        jsonObject.getString("street"),
+                                        jsonObject.getString("zip"),
+                                        jsonObject.getString("city")
+
+                                );
                         new android.os.Handler().postDelayed(
                                 new Runnable() {
                                     public void run() {

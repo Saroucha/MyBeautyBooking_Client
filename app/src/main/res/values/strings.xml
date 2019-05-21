@@ -19,7 +19,7 @@
     <string name="login">Connexion</string>
     <string name="logout">Déconnexion</string>
     <string name="link_create_account_msg">Inscription</string>
-    <string name="name">Nom complet</string>
+    <string name="name">Nom</string>
     <string name="last_name">Prénom</string>
     <string name="phone">Téléphone</string>
     <string name="street">Adresse</string>
